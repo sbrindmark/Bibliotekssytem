@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Bibliotekssytem
 {
-    internal abstract class User
+    internal class Customer : User
     {
-        public abstract void ShowMenu();
+        public override void ShowMenu()
+        {
+            Console.WriteLine("Customer menu");
+        }
     }
 }
