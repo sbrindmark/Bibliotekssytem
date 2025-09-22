@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Bibliotekssytem
 {
-    internal class Borrower
+    internal class Borrower : User
     {
+ 
+        }
     }
 }
