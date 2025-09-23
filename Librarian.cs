@@ -17,5 +17,21 @@ namespace Bibliotekssytem
             Console.WriteLine("4. View All Books");
             Console.WriteLine("5. Exit");
         } // kraftigt genererad med AI
+
+        public void AddBook()
+        {
+            // Code to add a book
+        }
+
+        public void BorrowBook()
+        {
+            // Code to borrow a book
+        }
+
+        public void ReturnBook()
+        {
+            // Code to return a book
+        }
+
     }
 }
