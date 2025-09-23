@@ -12,6 +12,13 @@ namespace Bibliotekssytem
         int isbn;
         public bool isBorrowed;
 
+        private List<Books> books = new List<Books>();
+        public List<Books> GetAllBooks()
+        {
+            Console.WriteLine("De böcker som finns i lager är: ");
+            return books;
+        }
+
         public Books(string title, string author, int isbn)
         {
             this.title = title;
