@@ -9,11 +9,13 @@ namespace Bibliotekssytem
     public class Books : ISearchable
     {
         string title, author;
-        int ISBN;
+        int isbn;
 
         public void Search(string keyWord)
         {
 
         }
+
+
     }
 }
