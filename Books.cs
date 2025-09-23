@@ -10,6 +10,7 @@ namespace Bibliotekssytem
     {
         string title, author;
         int isbn;
+        bool isBorrowed;
 
         public void Search(string keyWord)
         {
