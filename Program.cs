@@ -4,6 +4,8 @@
     {
         static void Main(string[] args)
         {
+            Librarian librarian = new Librarian();
+
             while (true)
             {
                 Console.Clear();
@@ -24,7 +26,7 @@
                 switch (input)
                 {
                     case "1":
-                        BibliotekarieMeny();
+                        librarian.ShowMenu();
                         break;
                     case "2":
                         LantagareMeny();
@@ -35,41 +37,8 @@
                         Console.ReadKey();
                         break;
                 }
-            }
-        }
 
-        static void BibliotekarieMeny()
-        {
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("Bibliotekarie-meny:");
-                Console.WriteLine("1. Funktion från person 2");
-                Console.WriteLine("2. Funktion från person 3");
-                Console.WriteLine("3. Funktion från person 4");
-                Console.WriteLine("0. Tillbaka");
-                Console.Write("Ditt val: ");
-                string input = Console.ReadLine();
-
-                if (input == "0") break;
-
-                switch (input)
-                {
-                    case "1":
-                        Person2Metod();
-                        break;
-                    case "2":
-                        Person3Metod();
-                        break;
-                    case "3":
-                        Person4Metod();
-                        break;
-                    default:
-                        Console.WriteLine("Felaktigt val, försök igen.");
-                        Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
-                        Console.ReadKey();
-                        break;
-                }
+                Console.ReadLine();
             }
         }
 
