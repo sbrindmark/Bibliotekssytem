@@ -8,7 +8,10 @@ namespace Bibliotekssytem
 {
     public class Borrower : User
     {
- 
+        public override void ShowMenu()
+        {
+            throw new NotImplementedException();
         }
     }
+}
 }
