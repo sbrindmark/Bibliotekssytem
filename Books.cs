@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace Bibliotekssytem
 {
-    public class Books
+    public class Books : ISearchable
     {
+        string title, author;
+        int ISBN;
 
-        
+        public void Search(string keyWord)
+        {
+
+        }
     }
 }
