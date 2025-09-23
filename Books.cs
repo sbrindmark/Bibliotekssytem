@@ -27,7 +27,7 @@ namespace Bibliotekssytem
                 author?.Contains(keyWord, StringComparison.OrdinalIgnoreCase) == true ||
                 isbn.ToString().Contains(keyWord))
             {
-                Console.WriteLine($"Hittade: {this.title} av {this.author} (ISBN: {this.isbn})");
+                Console.WriteLine($"Hittade: {title} av {author} (ISBN: {isbn})");
             }
         }
     }
