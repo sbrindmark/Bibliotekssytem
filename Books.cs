@@ -22,7 +22,13 @@ namespace Bibliotekssytem
 
         public void Search(string keyWord)
         {
-
+            if (title?.Contains(keyWord, StringComparison.OrdinalIgnoreCase) == true ||
+                title?.Contains(keyWord, StringComparison.OrdinalIgnoreCase) == true ||
+                author?.Contains(keyWord, StringComparison.OrdinalIgnoreCase) == true ||
+                isbn.ToString().Contains(keyWord))
+            {
+                Console.WriteLine($"Hittade: {this.title} av {this.author} (ISBN: {this.isbn})");
+            }
         }
 
 
