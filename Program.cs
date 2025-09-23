@@ -127,7 +127,7 @@
         {
             Console.WriteLine("Person 4:s metod körs...");
             Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
-            Console.ReadKey();
+            Console.ReadKey(); //Copilot har jobbat stenhårt här, tack för det! 
         }
     }
 }
