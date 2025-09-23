@@ -10,12 +10,12 @@ namespace Bibliotekssytem
     {
         public override void ShowMenu()
         {
-            Console.WriteLine("Librarian Menu");
-            Console.WriteLine("1. Add Book");
-            Console.WriteLine("2. Remove Book");
-            Console.WriteLine("3. Search Book");
-            Console.WriteLine("4. View All Books");
-            Console.WriteLine("5. Exit");
+            Console.WriteLine("Bibliotekariens meny");
+            Console.WriteLine("1. Lägg till bok");
+            Console.WriteLine("2. Ta bort bok");
+            Console.WriteLine("3. Sök efter bok");
+            Console.WriteLine("4. Visa alla böcker");
+            Console.WriteLine("5. Avsluta");
         } // kraftigt genererad med AI
 
         public void AddBook()
