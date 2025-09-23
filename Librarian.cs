@@ -18,20 +18,24 @@ namespace Bibliotekssytem
             Console.WriteLine("5. Exit");
         } // kraftigt genererad med AI
 
+        Books Books = new Books("The Great Gatsby", "F. Scott Fitzgerald", 123456);
+
         public void AddBook()
         {
             // Code to add a book
         }
 
-        public void BorrowBook()
+        public void BorrowBook(Books bookToBorrow)
         {
-            // Code to borrow a book
+            bookToBorrow.isBorrowed = true;
         }
 
-        public void ReturnBook()
+        public void ReturnBook(Books bookToReturn)
         {
-            // Code to return a book
+            bookToReturn.isBorrowed = false;
         }
+
+
 
     }
 }
