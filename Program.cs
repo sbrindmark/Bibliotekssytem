@@ -36,7 +36,7 @@
                         Console.WriteLine("Felaktigt val, försök igen.");
                         Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
                         Console.ReadKey();
-                        break;
+                        break; // Bra jobbat Joel!
                 }
 
                 Console.ReadLine();
