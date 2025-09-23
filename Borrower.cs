@@ -19,5 +19,17 @@ namespace Bibliotekssytem
             Console.WriteLine("5. Exit");
         } // kraftigt genererad med AI
 
+        public List<Books> borrowedBooks = new List<Books>();
+
+        public void BorrowBook(Books bookToBorrow)
+        {
+            bookToBorrow.isBorrowed = true;
+        }
+
+        public void ReturnBook(Books bookToReturn)
+        {
+            bookToReturn.isBorrowed = false;
+        }
+
     }
 }
