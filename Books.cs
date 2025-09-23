@@ -10,7 +10,7 @@ namespace Bibliotekssytem
     {
         string title, author;
         int isbn;
-        bool isBorrowed;
+        public bool isBorrowed;
 
         public Books(string title, string author, int isbn)
         {
