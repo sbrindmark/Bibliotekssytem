@@ -4,6 +4,9 @@
     {
         static void Main(string[] args)
         {
+            User librarian = new Librarian();
+            User borrower = new Librarian();
+
             while (true)
             {
                 Console.Clear();
@@ -24,10 +27,10 @@
                 switch (input)
                 {
                     case "1":
-                        BibliotekarieMeny();
+                        librarian.ShowMenu();
                         break;
                     case "2":
-                        LantagareMeny();
+                        borrower.ShowMenu();
                         break;
                     default:
                         Console.WriteLine("Felaktigt val, försök igen.");
@@ -35,99 +38,9 @@
                         Console.ReadKey();
                         break;
                 }
+
+                Console.ReadLine();
             }
-        }
-
-        static void BibliotekarieMeny()
-        {
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("Bibliotekarie-meny:");
-                Console.WriteLine("1. Funktion från person 2");
-                Console.WriteLine("2. Funktion från person 3");
-                Console.WriteLine("3. Funktion från person 4");
-                Console.WriteLine("0. Tillbaka");
-                Console.Write("Ditt val: ");
-                string input = Console.ReadLine();
-
-                if (input == "0") break;
-
-                switch (input)
-                {
-                    case "1":
-                        Person2Metod();
-                        break;
-                    case "2":
-                        Person3Metod();
-                        break;
-                    case "3":
-                        Person4Metod();
-                        break;
-                    default:
-                        Console.WriteLine("Felaktigt val, försök igen.");
-                        Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
-                        Console.ReadKey();
-                        break;
-                }
-            }
-        }
-
-        static void LantagareMeny()
-        {
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("Låntagare-meny:");
-                Console.WriteLine("1. Funktion från person 2");
-                Console.WriteLine("2. Funktion från person 3");
-                Console.WriteLine("3. Funktion från person 4");
-                Console.WriteLine("0. Tillbaka");
-                Console.Write("Ditt val: ");
-                string input = Console.ReadLine();
-
-                if (input == "0") break;
-
-                switch (input)
-                {
-                    case "1":
-                        Person2Metod();
-                        break;
-                    case "2":
-                        Person3Metod();
-                        break;
-                    case "3":
-                        Person4Metod();
-                        break;
-                    default:
-                        Console.WriteLine("Felaktigt val, försök igen.");
-                        Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
-                        Console.ReadKey();
-                        break;
-                }
-            }
-        }
-
-        // Byt ut dessa mot riktiga metoder från person 2–4
-        static void Person2Metod()
-        {
-            Console.WriteLine("Person 2:s metod körs...");
-            Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
-            Console.ReadKey();
-        }
-
-        static void Person3Metod()
-        {
-            Console.WriteLine("Person 3:s metod körs...");
-            Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
-            Console.ReadKey();
-        }
-
-        static void Person4Metod()
-        {
-            Console.WriteLine("Person 4:s metod körs...");
-            Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
-            Console.ReadKey(); //Copilot har jobbat stenhårt här, tack för det! 
         }
     }
 }

@@ -6,9 +6,25 @@ using System.Threading.Tasks;
 
 namespace Bibliotekssytem
 {
-    public class Books
+    public class Books : ISearchable
     {
+        string title, author;
+        int isbn;
+        public bool isBorrowed;
 
-        
+        public Books(string title, string author, int isbn)
+        {
+            this.title = title;
+            this.author = author;
+            this.isbn = isbn;
+            isBorrowed = false;
+        }
+
+        public void Search(string keyWord)
+        {
+
+        }
+
+
     }
 }
