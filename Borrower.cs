@@ -24,6 +24,7 @@ namespace Bibliotekssytem
         public void BorrowBook(Books bookToBorrow)
         {
             bookToBorrow.isBorrowed = true;
+
         }
 
         public void ReturnBook(Books bookToReturn)
@@ -32,4 +33,5 @@ namespace Bibliotekssytem
         }
 
     }
+}
 }
