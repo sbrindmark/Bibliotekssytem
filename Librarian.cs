@@ -105,6 +105,27 @@ namespace Bibliotekssytem
                 Console.WriteLine(book.ToString());
             }
         }
+
+        // Sök efter bok
+        public void SearchBook()
+        {
+            string searchTerm = ReadNonEmptyInput("Ange titel eller författare att söka efter: ");
+            var foundBooks = books.Where(b => b.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
+                                           || b.Author.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
+
+            if (foundBooks.Count == 0)
+            {
+                Console.WriteLine("Ingen bok matchar din sökning.");
+            }
+            else
+            {
+                Console.WriteLine("Matchande böcker:");
+                foreach (var book in foundBooks)
+                {
+                    Console.WriteLine(book.ToString());
+                }
+            }
+        }
     }
 }
 
