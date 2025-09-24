@@ -31,7 +31,7 @@ namespace Bibliotekssytem
                         //remove book
                         break;
                     case "3":
-                        //Sök efter bok
+                        SearchBook();
                         break;
                     case "4":
                         ListBooks();
