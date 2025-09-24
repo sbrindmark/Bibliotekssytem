@@ -8,8 +8,8 @@ namespace Bibliotekssytem
 {
     public class Books : ISearchable
     {
-        string title, author;
-        int isbn;
+        public string title, author;
+        public int isbn;
         public bool isBorrowed;
 
         public Books(string title, string author, int isbn)
