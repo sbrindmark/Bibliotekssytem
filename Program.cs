@@ -36,7 +36,7 @@
                         Console.WriteLine("Felaktigt val, försök igen.");
                         Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
                         Console.ReadKey();
-                        break;              //Här har Copilot bidragit med hjälp!
+                        break;
                 }
 
                 Console.ReadLine();
