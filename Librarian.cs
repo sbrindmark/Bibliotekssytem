@@ -6,46 +6,50 @@ using System.Threading.Tasks;
 
 namespace Bibliotekssytem
 {
-    public class Book
-    {
-        public string ISBN { get; set; }
-        public string Title { get; set; }
-        public string Author { get; set; }
-
-        public Book(string isbn, string title, string author)
-        {
-            ISBN = isbn;
-            Title = title;
-            Author = author;
-        }
-
-        public override string ToString()
-        {
-            return $"{Title} av {Author} (ISBN: {ISBN})";
-        }
-    }
-
     public class Librarian : User
     {
         public override void ShowMenu()
         {
-            Console.WriteLine("Bibliotekariens meny");
-            Console.WriteLine("1. Lägg till bok");
-            Console.WriteLine("2. Ta bort bok");
-            Console.WriteLine("3. Sök efter bok");
-            Console.WriteLine("4. Visa alla böcker");
-            Console.WriteLine("5. Avsluta");
-        } // kraftigt genererad med AI
+            bool running = true;
+            while (running)
+            {
+                Console.WriteLine("Bibliotekariens meny");
+                Console.WriteLine("1. Lägg till bok");
+                Console.WriteLine("2. Ta bort bok");
+                Console.WriteLine("3. Sök efter bok");
+                Console.WriteLine("4. Visa alla böcker");
+                Console.WriteLine("5. Avsluta");
 
+                var input = Console.ReadLine();
 
-        private List<Book> books = new List<Book>();
-        public override void ShowMenu()
-        {
-            throw new NotImplementedException();
+                switch (input)
+                {
+                    case "1":
+                       // AddBook();
+                        break;
+                    case "2":
+                        //remove book
+                        break;
+                    case "3":
+                        //Sök efter bok
+                        break;
+                    case "4":
+                        ListBooks();
+                        break;
+                    case "5":
+                        running = false;
+                        break;
+                    default:
+                        Console.WriteLine("Ogiltigt val.");
+                            break;
+                }
+            } // kraftigt genererad med AI
         }
 
+        private List<Books> books = new List<Books>();
+
         // Lägg till bok
-        public void AddBook(Book book)
+        public void AddBook(Books book)
         {
             // Kontrollera om ISBN redan finns
             foreach (var b in books)

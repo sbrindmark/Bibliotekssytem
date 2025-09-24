@@ -8,26 +8,30 @@ namespace Bibliotekssytem
 {
     public class Books : ISearchable
     {
-        string title, author;
-        int isbn;
-        public bool isBorrowed;
+        public string ISBN { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
 
-        public Books(string title, string author, int isbn)
+        public Books(string isbn, string title, string author)
         {
-            this.title = title;
-            this.author = author;
-            this.isbn = isbn;
-            isBorrowed = false;
+            ISBN = isbn;
+            Title = title;
+            Author = author;
+        }
+
+        public override string ToString()
+        {
+            return $"{Title} av {Author} (ISBN: {ISBN})";
         }
 
         public void Search(string keyWord)
         {
-            if (title?.Contains(keyWord, StringComparison.OrdinalIgnoreCase) == true ||
-                title?.Contains(keyWord, StringComparison.OrdinalIgnoreCase) == true ||
-                author?.Contains(keyWord, StringComparison.OrdinalIgnoreCase) == true ||
-                isbn.ToString().Contains(keyWord))
+            if (Title?.Contains(keyWord, StringComparison.OrdinalIgnoreCase) == true ||
+                Title?.Contains(keyWord, StringComparison.OrdinalIgnoreCase) == true ||
+                Author?.Contains(keyWord, StringComparison.OrdinalIgnoreCase) == true ||
+                ISBN.ToString().Contains(keyWord))
             {
-                Console.WriteLine($"Hittade: {title} av {author} (ISBN: {isbn})");
+                Console.WriteLine($"Hittade: {Title} av {Author} (ISBN: {ISBN})");
             }
         }
     }
