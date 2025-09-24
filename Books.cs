@@ -13,7 +13,7 @@ namespace Bibliotekssytem
         public string Title { get; set; }
         public string Author { get; set; }
 
-        public Books(string isbn, string title, string author)
+        public Books(string title, string author, string isbn)
         {
             ISBN = isbn;
             Title = title;
@@ -35,7 +35,7 @@ namespace Bibliotekssytem
                 Console.WriteLine($"Hittade: {Title} av {Author} (ISBN: {ISBN})");
             }
         }
-        public void BorrowBook(int id)
+        /*public void BorrowBook(int id)
         {
             var book = books.FirstOrDefault(b => b.Id == id);
             if (book == null)
@@ -72,11 +72,8 @@ namespace Bibliotekssytem
             {
                 book.IsBorrowed = false;
                 Console.WriteLine($"Du har lämnat tillbaka boken: {book.Title}");
-            }
+            }*/
         }
     }
-}
 
-    }
 
-}
