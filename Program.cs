@@ -2,10 +2,12 @@
 {
     internal class Program
     {
+
         static void Main(string[] args)
         {
-            User librarian = new Librarian();
-            User borrower = new Borrower();
+            Librarian librarian = new Librarian();
+            Borrower borrower = new Borrower();
+            List<Books> books = new List<Books>();
 
             while (true)
             {

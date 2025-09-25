@@ -8,7 +8,7 @@ namespace Bibliotekssytem
 {
     public class Borrower : User
     {
-        
+
         public override void ShowMenu()
         {
             bool running = true;
@@ -26,7 +26,7 @@ namespace Bibliotekssytem
                 switch (input)
                 {
                     case "1":
-                        // Sök efter bok
+                        SearchBook();
                         break;
                     case "2":
                         //ListBooks(); - ###hittar metoden då den är definierad i en annan klass.####
@@ -45,7 +45,7 @@ namespace Bibliotekssytem
                 }
             }
 
-        } 
+        }
 
         public List<Books> borrowedBooks = new List<Books>();
 
@@ -59,6 +59,8 @@ namespace Bibliotekssytem
         {
            bookToReturn.isBorrowed = false;
         }
+
+
 
     }
 }

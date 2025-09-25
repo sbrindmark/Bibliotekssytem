@@ -8,6 +8,8 @@ namespace Bibliotekssytem
 {
     public class Librarian : User
     {
+        public List<Books> books = new List<Books>();
+
         public override void ShowMenu()
         {
             bool running = true;
@@ -31,7 +33,7 @@ namespace Bibliotekssytem
                         RemoveBook();
                         break;
                     case "3":
-                        SearchBook();
+                        SearchBook(this);
                         break;
                     case "4":
                         ListBooks();
@@ -52,22 +54,6 @@ namespace Bibliotekssytem
             } 
         }
 
-        private List<Books> books = new List<Books>();
-
-        //Hjälpfunktion för att validera text från användaren
-        private string ReadNonEmptyInput(string prompt)
-        {
-            string input;
-            do
-            {
-                Console.WriteLine(prompt);
-                input = Console.ReadLine();
-                if (string.IsNullOrEmpty(input))
-                    Console.WriteLine("Fältet får inte vara tomt. ");
-            } while (string.IsNullOrEmpty(input));
-            return input;
-        }
-
         // Lägg till bok
         public void AddBook()
         {
@@ -75,10 +61,10 @@ namespace Bibliotekssytem
             string author = ReadNonEmptyInput("Ange författare: ");
             string isbn = ReadNonEmptyInput("Ange ISBN: ");
 
-            var book = new Books(titel, author, isbn);
+            Books book = new Books(titel, author, isbn);
 
             // Kontrollera om ISBN redan finns
-            foreach (var b in books)
+            foreach (Books b in books)
             {
                 if (b.ISBN == book.ISBN)
                 {
@@ -130,27 +116,6 @@ namespace Bibliotekssytem
             else
             {
                 Console.WriteLine("Ogiltigt val.");
-            }
-        }
-
-        // Sök efter bok
-        public void SearchBook()
-        {
-            string searchTerm = ReadNonEmptyInput("Ange titel eller författare att söka efter: ");
-            var foundBooks = books.Where(b => b.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
-                                           || b.Author.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
-
-            if (foundBooks.Count == 0)
-            {
-                Console.WriteLine("Ingen bok matchar din sökning.");
-            }
-            else
-            {
-                Console.WriteLine("Matchande böcker:");
-                foreach (var book in foundBooks)
-                {
-                    Console.WriteLine(book.ToString());   
-                }
             }
         }
     }
