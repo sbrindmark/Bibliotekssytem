@@ -44,36 +44,8 @@ namespace Bibliotekssytem
                 return;
             }
 
-            if (book.IsBorrowed)
-            {
-                Console.WriteLine("Fel: Boken är redan utlånad.");
-            }
-            else
-            {
-                book.IsBorrowed = true;
-                Console.WriteLine($"Du har lånat boken: {book.Title}");
-            }
         }
 
-        public void ReturnBook(int id)
-        {
-            var book = books.FirstOrDefault(b => b.Id == id);
-            if (book == null)
-            {
-                Console.WriteLine("Fel: Boken finns inte.");
-                return;
-            }
 
-            if (!book.IsBorrowed)
-            {
-                Console.WriteLine("Fel: Boken är inte utlånad.");
-            }
-            else
-            {
-                book.IsBorrowed = false;
-                Console.WriteLine($"Du har lämnat tillbaka boken: {book.Title}");
-            }*/
-        }
     }
-
-
+}
