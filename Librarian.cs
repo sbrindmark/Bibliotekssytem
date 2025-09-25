@@ -28,7 +28,7 @@ namespace Bibliotekssytem
                        AddBook();
                         break;
                     case "2":
-                        //remove book
+                        RemoveBook();
                         break;
                     case "3":
                         SearchBook();
@@ -103,6 +103,33 @@ namespace Bibliotekssytem
             foreach (var book in books)
             {
                 Console.WriteLine(book.ToString());
+            }
+        }
+
+        public void RemoveBook()
+        {
+            if (books.Count == 0)
+            {
+                Console.WriteLine("Det finns inga böcker att ta bort.");
+                return;
+            }
+
+            Console.WriteLine("Böcker i biblioteket:");
+            for (int i = 0; i < books.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {books[i].ToString()}");
+            }
+
+            Console.Write("Ange numret på boken du vill ta bort: ");
+            if (int.TryParse(Console.ReadLine(), out int choice) && choice > 0 && choice <= books.Count)
+            {
+                var removedBook = books[choice - 1];
+                books.RemoveAt(choice - 1);
+                Console.WriteLine($"Boken \"{removedBook.Title}\" har tagits bort.");
+            }
+            else
+            {
+                Console.WriteLine("Ogiltigt val.");
             }
         }
 
