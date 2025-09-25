@@ -28,17 +28,56 @@ namespace Bibliotekssytem
                     case "1":
                         SearchBook(parameterList);
                         break;
+
                     case "2":
                         ListBooks(parameterList);
                         break;
-                    case "3":
-                        //Låna bok
+
+                    case "3": // Låna bok
+                        Console.Write("Vilken bok vill du låna? ");
+                        int borrowId = int.Parse(Console.ReadLine());
+
+                        Console.Write("Ange ditt användar-ID: ");
+                        int borrowUserId = int.Parse(Console.ReadLine());
+
+                        var bookToBorrow = parameterList.FirstOrDefault(b => b.Id == borrowId);
+                        if (bookToBorrow != null && !bookToBorrow.IsBorrowed)
+                        {
+                            bookToBorrow.IsBorrowed = true;
+                            bookToBorrow.BorrowedByUserId = borrowUserId;
+                            Console.WriteLine($"Du har lånat boken '{bookToBorrow.Title}'.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Boken hittades inte eller är redan utlånad.");
+                        }
                         break;
-                    case "4":
-                        //Lämna tillbaka bok
+
+                    case "4": // Lämna tillbaka bok
+                        Console.Write("Ange bok namn att lämna tillbaka: ");
+                        int returnId = int.Parse(Console.ReadLine());
+
+                        Console.Write("Ange ditt användar-ID: ");
+                        int returnUserId = int.Parse(Console.ReadLine());
+
+                        var bookToReturn = parameterList.FirstOrDefault(b => b.Id == returnId);
+                        if (bookToReturn != null && bookToReturn.IsBorrowed && bookToReturn.BorrowedByUserId == returnUserId)
+                        {
+                            bookToReturn.IsBorrowed = false;
+                            bookToReturn.BorrowedByUserId = null;
+                            Console.WriteLine($" Du har lämnat tillbaka boken '{bookToReturn.Title}'.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ogiltig retur – kontrollera bok-ID och användar-ID.");
+                        }
                         break;
+
                     case "5":
+                        // ev. avsluta eller gå tillbaka
+                        running = false;
                         break;
+
                     default:
                         Console.WriteLine("Ogiltigt val.");
                         break;
@@ -51,25 +90,25 @@ namespace Bibliotekssytem
 
         public void BorrowBook(Books bookToBorrow)
         {
-            if (bookToBorrow.isBorrowed)
+            if (bookToBorrow.IsBorrowed)
             {
                 Console.WriteLine("Boken är redan utlånad.");
                 return;
             }
 
-            bookToBorrow.isBorrowed = true;
+            bookToBorrow.IsBorrowed = true;
             Console.WriteLine($" Du har lånat boken '{bookToBorrow.Title}'.");
         }
 
         public void ReturnBook(Books bookToReturn)
         {
-            if (!bookToReturn.isBorrowed)
+            if (!bookToReturn.IsBorrowed)
             {
                 Console.WriteLine("Den här boken är inte utlånad.");
                 return;
             }
 
-            bookToReturn.isBorrowed = false;
+            bookToReturn.IsBorrowed = false;
             Console.WriteLine($"Du har lämnat tillbaka boken '{bookToReturn.Title}'.");
         }
 

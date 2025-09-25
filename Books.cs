@@ -9,34 +9,36 @@ namespace Bibliotekssytem
 {
     public class Books : ISearchable
     {
-        public string ISBN;
-        public string Title;
-        public string Author;
-        public bool isBorrowed;
+        public int Id { get; set; }
+        public string ISBN { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public bool IsBorrowed { get; set; }
+        public int? BorrowedByUserId { get; set; }
 
-        public Books(string title, string author, string isbn)
+        public Books(int id, string title, string author, string isbn)
         {
-            ISBN = isbn;
+            Id = id;
             Title = title;
             Author = author;
+            ISBN = isbn;
+            IsBorrowed = false;
+            BorrowedByUserId = null;
         }
 
         public override string ToString()
         {
-            return $"{Title} av {Author} (ISBN: {ISBN})";
+            return $"[{Id}] {Title} av {Author} (ISBN: {ISBN})" +
+                   (IsBorrowed ? " - Utlånad" : " - Tillgänglig");
         }
 
-        public void Search(string keyWord) 
+        public void Search(string keyword)
         {
-            if (Title?.Contains(keyWord, StringComparison.OrdinalIgnoreCase) == true ||
-                Title?.Contains(keyWord, StringComparison.OrdinalIgnoreCase) == true ||
-                Author?.Contains(keyWord, StringComparison.OrdinalIgnoreCase) == true ||
-                ISBN.ToString().Contains(keyWord))
+            if (Title?.Contains(keyword, StringComparison.OrdinalIgnoreCase) == true ||
+                Author?.Contains(keyword, StringComparison.OrdinalIgnoreCase) == true ||
+                ISBN?.Contains(keyword, StringComparison.OrdinalIgnoreCase) == true)
             {
-                Console.WriteLine($"Hittade: {Title} av {Author} (ISBN: {ISBN})");
-            }
-        }
-
-
+                Console.WriteLine(ToString());
+            }        }
     }
 }

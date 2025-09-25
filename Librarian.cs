@@ -61,7 +61,10 @@ namespace Bibliotekssytem
             string author = ReadNonEmptyInput("Ange författare: ");
             string isbn = ReadNonEmptyInput("Ange ISBN: ");
 
-            Books book = new Books(titel, author, isbn);
+            // Generate a new unique Id for the book
+            int newId = books.Count > 0 ? books.Max(b => b.Id) + 1 : 1;
+
+            Books book = new Books(newId, titel, author, isbn);
 
             // Kontrollera om ISBN redan finns
             foreach (Books b in books)
