@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             User librarian = new Librarian();
-            User borrower = new Librarian();
+            User borrower = new Borrower();
 
             while (true)
             {

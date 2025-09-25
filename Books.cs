@@ -9,9 +9,9 @@ namespace Bibliotekssytem
 {
     public class Books : ISearchable
     {
-        public string ISBN { get; set; }
-        public string Title { get; set; }
-        public string Author { get; set; }
+        public string ISBN;
+        public string Title;
+        public string Author;
 
         public Books(string title, string author, string isbn)
         {
