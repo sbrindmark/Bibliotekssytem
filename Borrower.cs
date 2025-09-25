@@ -50,13 +50,13 @@ namespace Bibliotekssytem
 
         public void BorrowBook(Books bookToBorrow)
         {
-           // bookToBorrow.isBorrowed = true;
+           bookToBorrow.isBorrowed = true;
 
         }
 
         public void ReturnBook(Books bookToReturn)
         {
-           // bookToReturn.isBorrowed = false;
+           bookToReturn.isBorrowed = false;
         }
 
     }
