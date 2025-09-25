@@ -51,13 +51,26 @@ namespace Bibliotekssytem
 
         public void BorrowBook(Books bookToBorrow)
         {
-           bookToBorrow.isBorrowed = true;
+            if (bookToBorrow.isBorrowed)
+            {
+                Console.WriteLine("Boken är redan utlånad.");
+                return;
+            }
 
+            bookToBorrow.isBorrowed = true;
+            Console.WriteLine($" Du har lånat boken '{bookToBorrow.Title}'.");
         }
 
         public void ReturnBook(Books bookToReturn)
         {
-           bookToReturn.isBorrowed = false;
+            if (!bookToReturn.isBorrowed)
+            {
+                Console.WriteLine("Den här boken är inte utlånad.");
+                return;
+            }
+
+            bookToReturn.isBorrowed = false;
+            Console.WriteLine($"Du har lämnat tillbaka boken '{bookToReturn.Title}'.");
         }
 
 
