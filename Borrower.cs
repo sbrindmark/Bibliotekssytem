@@ -9,7 +9,7 @@ namespace Bibliotekssytem
     public class Borrower : User
     {
 
-        public override void ShowMenu()
+        public override void ShowMenu(List<Books> parameterList)
         {
             bool running = true;
             while (running)
@@ -26,10 +26,10 @@ namespace Bibliotekssytem
                 switch (input)
                 {
                     case "1":
-                        SearchBook();
+                        SearchBook(parameterList);
                         break;
                     case "2":
-                        //ListBooks(); - ###hittar metoden då den är definierad i en annan klass.####
+                        ListBooks(parameterList);
                         break;
                     case "3":
                         //Låna bok

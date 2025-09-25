@@ -8,9 +8,7 @@ namespace Bibliotekssytem
 {
     public class Librarian : User
     {
-        public List<Books> books = new List<Books>();
-
-        public override void ShowMenu()
+        public override void ShowMenu(List<Books> parameterList)
         {
             bool running = true;
             while (running)
@@ -27,16 +25,16 @@ namespace Bibliotekssytem
                 switch (input)
                 {
                     case "1":
-                       AddBook();
+                       AddBook(parameterList);
                         break;
                     case "2":
                         RemoveBook();
                         break;
                     case "3":
-                        SearchBook(this);
+                        SearchBook(parameterList);
                         break;
                     case "4":
-                        ListBooks();
+                        ListBooks(parameterList);
                         break;
                     case "5":
                         running = false;
@@ -55,8 +53,10 @@ namespace Bibliotekssytem
         }
 
         // Lägg till bok
-        public void AddBook()
+        public void AddBook(List<Books> book1)
         {
+            books = book1;
+
             string titel = ReadNonEmptyInput("Ange titel: ");
             string author = ReadNonEmptyInput("Ange författare: ");
             string isbn = ReadNonEmptyInput("Ange ISBN: ");
@@ -74,22 +74,6 @@ namespace Bibliotekssytem
             }
             books.Add(book);
             Console.WriteLine($"Boken \"{book.Title}\" har lagts till.");
-        }
-
-        // Lista alla böcker
-        public void ListBooks()
-        {
-            if (books.Count == 0)
-            {
-                Console.WriteLine("Inga böcker i biblioteket.");
-                return;
-            }
-
-            Console.WriteLine("Böcker i biblioteket:");
-            foreach (var book in books)
-            {
-                Console.WriteLine(book.ToString());
-            }
         }
 
         public void RemoveBook()

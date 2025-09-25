@@ -29,10 +29,10 @@
                 switch (input)
                 {
                     case "1":
-                        librarian.ShowMenu();
+                        librarian.ShowMenu(books);
                         break;
                     case "2":
-                        borrower.ShowMenu();
+                        borrower.ShowMenu(books);
                         break;
                     default:
                         Console.WriteLine("Felaktigt val, försök igen.");
@@ -43,6 +43,7 @@
 
                 Console.ReadLine();
             }
+
         }
     }
 }
