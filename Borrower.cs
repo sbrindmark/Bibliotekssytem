@@ -14,7 +14,7 @@ namespace Bibliotekssytem
             bool running = true;
             while (running)
             {
-                Console.WriteLine("Borrower Menu");
+                Console.WriteLine("\nBorrower Menu");
                 Console.WriteLine("1. Search Book");
                 Console.WriteLine("2. View All Books");
                 Console.WriteLine("3. Borrow Book");
@@ -28,59 +28,27 @@ namespace Bibliotekssytem
                     case "1":
                         SearchBook(parameterList);
                         break;
-
                     case "2":
                         ListBooks(parameterList);
                         break;
-
-                    case "3": // Låna bok
-                        Console.Write("Vilken bok vill du låna? ");
-                        int borrowId = int.Parse(Console.ReadLine());
-
-                        Console.Write("Ange ditt användar-ID: ");
-                        int borrowUserId = int.Parse(Console.ReadLine());
-
-                        var bookToBorrow = parameterList.FirstOrDefault(b => b.Id == borrowId);
-                        if (bookToBorrow != null && !bookToBorrow.IsBorrowed)
-                        {
-                            bookToBorrow.IsBorrowed = true;
-                            bookToBorrow.BorrowedByUserId = borrowUserId;
-                            Console.WriteLine($"Du har lånat boken '{bookToBorrow.Title}'.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Boken hittades inte eller är redan utlånad.");
-                        }
+                    case "3":
+                        BorrowBook(parameterList);
                         break;
-
-                    case "4": // Lämna tillbaka bok
-                        Console.Write("Ange bok namn att lämna tillbaka: ");
-                        int returnId = int.Parse(Console.ReadLine());
-
-                        Console.Write("Ange ditt användar-ID: ");
-                        int returnUserId = int.Parse(Console.ReadLine());
-
-                        var bookToReturn = parameterList.FirstOrDefault(b => b.Id == returnId);
-                        if (bookToReturn != null && bookToReturn.IsBorrowed && bookToReturn.BorrowedByUserId == returnUserId)
-                        {
-                            bookToReturn.IsBorrowed = false;
-                            bookToReturn.BorrowedByUserId = null;
-                            Console.WriteLine($" Du har lämnat tillbaka boken '{bookToReturn.Title}'.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Ogiltig retur – kontrollera bok-ID och användar-ID.");
-                        }
+                    case "4":
+                        ReturnBook(parameterList);
                         break;
-
                     case "5":
-                        // ev. avsluta eller gå tillbaka
                         running = false;
                         break;
-
                     default:
                         Console.WriteLine("Ogiltigt val.");
                         break;
+                }
+                if (running)
+                {
+                    Console.WriteLine("\nTryck på valfri tangent för att fortsätta...");
+                    Console.ReadKey();
+                    Console.Clear();
                 }
             }
 
@@ -88,31 +56,64 @@ namespace Bibliotekssytem
 
         public List<Books> borrowedBooks = new List<Books>();
 
-        public void BorrowBook(Books bookToBorrow)
+        public void BorrowBook(List<Books> books)
         {
-            if (bookToBorrow.IsBorrowed)
+            ListBooks(books);
+            Console.Write("Vilken bok vill du låna? ");
+            if (!int.TryParse(Console.ReadLine(), out int borrowId))
             {
-                Console.WriteLine("Boken är redan utlånad.");
+                Console.WriteLine("Ogiltigt bok-ID");
+                return;
+            }
+            Console.Write("Ange ditt användar-ID: ");
+            if (!int.TryParse(Console.ReadLine(), out int borrowUserId))
+            {
+                Console.WriteLine("Ogiltigt användar-ID");
                 return;
             }
 
-            bookToBorrow.IsBorrowed = true;
-            Console.WriteLine($" Du har lånat boken '{bookToBorrow.Title}'.");
+            var bookToBorrow = books.FirstOrDefault(b => b.Id == borrowId);
+            if (bookToBorrow != null && !bookToBorrow.IsBorrowed)
+            {
+                bookToBorrow.IsBorrowed = true;
+                bookToBorrow.BorrowedByUserId = borrowUserId;
+                Console.WriteLine($"Du har lånat boken '{bookToBorrow.Title}'.");
+            }
+            else
+            {
+                Console.WriteLine("Boken hittades inte eller är redan utlånad.");
+            }
         }
 
-        public void ReturnBook(Books bookToReturn)
+        public void ReturnBook(List<Books> books)
         {
-            if (!bookToReturn.IsBorrowed)
+            ListBooks(books);
+            Console.Write("Ange bok-ID att lämna tillbaka: ");
+            if (!int.TryParse(Console.ReadLine(), out int returnId))
             {
-                Console.WriteLine("Den här boken är inte utlånad.");
+                Console.WriteLine("Ogiltigt bok-ID");
+                return;
+            }
+            Console.Write("Ange ditt användar-ID: ");
+            if (!int.TryParse(Console.ReadLine(), out int returnUserId))
+            {
+                Console.WriteLine("Ogiltigt användar-ID");
                 return;
             }
 
-            bookToReturn.IsBorrowed = false;
-            Console.WriteLine($"Du har lämnat tillbaka boken '{bookToReturn.Title}'.");
+            var bookToReturn = books.FirstOrDefault(b => b.Id == returnId);
+            if (bookToReturn != null && bookToReturn.IsBorrowed && bookToReturn.BorrowedByUserId == returnUserId)
+            {
+                bookToReturn.IsBorrowed = false;
+                bookToReturn.BorrowedByUserId = null;
+                Console.WriteLine($"Du har lämnat tillbaka boken '{bookToReturn.Title}'.");
+            }
+            else
+            {
+                Console.WriteLine("Ogiltig retur – kontrollera bok-ID och användar-ID.");
+            }
         }
-
-
+       
 
     }
 }
