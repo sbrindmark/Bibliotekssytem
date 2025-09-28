@@ -15,7 +15,10 @@
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Välkommen till Bibliotekssystemet!");
+
+                Console.WriteLine("\n╔══════════════════════╗");
+                Console.WriteLine("║      Biblioteket     ║");
+                Console.WriteLine("╚══════════════════════╝\n");
                 Console.WriteLine("Välj användartyp:");
                 Console.WriteLine("1. Bibliotekarie");
                 Console.WriteLine("2. Låntagare");
