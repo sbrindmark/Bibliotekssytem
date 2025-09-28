@@ -6,67 +6,73 @@ using System.Threading.Tasks;
 
 namespace Bibliotekssytem
 {
+    // Librarian ärver från User och hanterar bibliotekariens funktioner
     public class Librarian : User
     {
+        // Visar bibliotekariens meny och hanterar val
         public override void ShowMenu(List<Books> parameterList)
         {
             bool running = true;
             while (running)
             {
+                // Meny för bibliotekarien
                 Console.WriteLine("\nBibliotekariens meny");
                 Console.WriteLine("1. Lägg till bok");
                 Console.WriteLine("2. Ta bort bok");
                 Console.WriteLine("3. Sök efter bok");
                 Console.WriteLine("4. Visa alla böcker");
-                Console.WriteLine("5. Avsluta");
-                // kraftigt genererad med AI
+                Console.WriteLine("5. Bakåt");
+
                 var input = Console.ReadLine();
 
+                // Hanterar användarens val
                 switch (input)
                 {
                     case "1":
-                       AddBook(parameterList);
+                        AddBook(parameterList); // Lägg till en ny bok
                         break;
                     case "2":
-                        RemoveBook();
+                        RemoveBook(); // Ta bort en bok
                         break;
                     case "3":
-                        SearchBook(parameterList);
+                        SearchBook(parameterList); // Sök efter bok
                         break;
                     case "4":
-                        ListBooks(parameterList);
+                        ListBooks(parameterList); // Visa alla böcker
                         break;
                     case "5":
-                        running = false;
+                        running = false; // Avsluta menyn
                         break;
                     default:
                         Console.WriteLine("Ogiltigt val.");
-                            break;
+                        break;
                 }
+                // Pausar och rensar konsolen mellan val
                 if (running)
                 {
                     Console.WriteLine("\nTryck på valfri tangent för att fortsätta...");
                     Console.ReadKey();
                     Console.Clear();
                 }
-            } 
+            }
         }
 
-        // Lägg till bok
+        // Lägger till en ny bok i listan
         public void AddBook(List<Books> book1)
         {
-            books = book1;
+            books = book1; // Synkroniserar med den aktuella boklistan
 
+            // Hämtar och validerar titel, författare och ISBN från användaren
             string titel = ReadNonEmptyInput("Ange titel: ");
             string author = ReadNonEmptyInput("Ange författare: ");
-            string isbn = ReadNonEmptyInput("Ange ISBN: ");
+            string isbn = ReadNumericInput("Ange ISBN: ");
 
-            // Generate a new unique Id for the book
+            // Skapar ett unikt Id för den nya boken
             int newId = books.Count > 0 ? books.Max(b => b.Id) + 1 : 1;
 
             Books book = new Books(newId, titel, author, isbn);
 
-            // Kontrollera om ISBN redan finns
+            // Kontrollerar om ISBN redan finns i systemet
             foreach (Books b in books)
             {
                 if (b.ISBN == book.ISBN)
@@ -75,10 +81,12 @@ namespace Bibliotekssytem
                     return;
                 }
             }
+            // Lägger till boken i listan
             books.Add(book);
             Console.WriteLine($"Boken \"{book.Title}\" har lagts till.");
         }
 
+        // Tar bort en bok från listan
         public void RemoveBook()
         {
             if (books.Count == 0)
@@ -87,12 +95,14 @@ namespace Bibliotekssytem
                 return;
             }
 
+            // Visar alla böcker med index
             Console.WriteLine("Böcker i biblioteket:");
             for (int i = 0; i < books.Count; i++)
             {
                 Console.WriteLine($"{i + 1}. {books[i].ToString()}");
             }
 
+            // Frågar användaren vilken bok som ska tas bort
             Console.Write("Ange numret på boken du vill ta bort: ");
             if (int.TryParse(Console.ReadLine(), out int choice) && choice > 0 && choice <= books.Count)
             {

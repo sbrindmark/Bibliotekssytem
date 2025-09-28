@@ -6,44 +6,47 @@ using System.Threading.Tasks;
 
 namespace Bibliotekssytem
 {
+    // Låntagare, ärver från User
     public class Borrower : User
     {
-
+        // Visar låntagarens meny och hanterar val
         public override void ShowMenu(List<Books> parameterList)
         {
             bool running = true;
             while (running)
             {
-                Console.WriteLine("\nBorrower Menu");
-                Console.WriteLine("1. Search Book");
-                Console.WriteLine("2. View All Books");
-                Console.WriteLine("3. Borrow Book");
-                Console.WriteLine("4. Return Book");
-                Console.WriteLine("5. Exit");
-                // kraftigt genererad med AI
+                Console.WriteLine("\nLåntagares meny");
+                Console.WriteLine("1. Sök bok");
+                Console.WriteLine("2. Visa alla böcker");
+                Console.WriteLine("3. Låna bok");
+                Console.WriteLine("4. Lämna tillbaka bok");
+                Console.WriteLine("5. Bakåt");
+                
                 var input = Console.ReadLine();
 
+                // Hanterar användarens val
                 switch (input)
                 {
                     case "1":
-                        SearchBook(parameterList);
+                        SearchBook(parameterList); // Sök efter bok
                         break;
                     case "2":
-                        ListBooks(parameterList);
+                        ListBooks(parameterList); // Visa alla böcker
                         break;
                     case "3":
-                        BorrowBook(parameterList);
+                        BorrowBook(parameterList); // Låna bok
                         break;
                     case "4":
-                        ReturnBook(parameterList);
+                        ReturnBook(parameterList); // Lämna tillbaka bok
                         break;
                     case "5":
-                        running = false;
+                        running = false; // Avsluta menyn
                         break;
                     default:
                         Console.WriteLine("Ogiltigt val.");
                         break;
                 }
+                // Pausar och rensar konsolen mellan val
                 if (running)
                 {
                     Console.WriteLine("\nTryck på valfri tangent för att fortsätta...");
@@ -51,14 +54,15 @@ namespace Bibliotekssytem
                     Console.Clear();
                 }
             }
-
         }
 
+        // Lista över böcker som låntagaren har lånat (används ej direkt i menyn)
         public List<Books> borrowedBooks = new List<Books>();
 
+        // Hanterar utlåning av bok
         public void BorrowBook(List<Books> books)
         {
-            ListBooks(books);
+            ListBooks(books); // Visa alla böcker
             Console.Write("Vilken bok vill du låna? ");
             if (!int.TryParse(Console.ReadLine(), out int borrowId))
             {
@@ -85,6 +89,7 @@ namespace Bibliotekssytem
             }
         }
 
+        // Hanterar återlämning av bok
         public void ReturnBook(List<Books> books)
         {
             ListBooks(books);
